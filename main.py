@@ -99,7 +99,7 @@ def combine_layouts(a: Layout, b: Layout):
     return None
 
 
-def main():
+def generate():
     COUNT = 1000
     TOP = 100
     ITERATIONS = 10000
@@ -110,12 +110,12 @@ def main():
     best = layouts[0]
 
     for i in range(ITERATIONS):
-        print(f'iteration {i}...')
+        # print(f'iteration {i}...')
         layouts.sort(key=lambda layout: layout.score(freq), reverse=True)
         if layouts[0].score(freq) > best.score(freq):
             best = layouts[0]
-            print(f'new best, score={best.score(freq)}')
-            print(best)
+            # print(f'new best, score={best.score(freq)}')
+            # print(best)
         layouts = layouts[:TOP]
         for _ in range(COUNT - TOP):
             c = None
@@ -128,6 +128,11 @@ def main():
 
     print('#' * 40)
     print(best)
+
+
+def main():
+    for _ in range(15):
+        generate()
 
 
 if __name__ == "__main__":
